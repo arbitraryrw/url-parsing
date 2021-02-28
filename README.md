@@ -49,6 +49,10 @@ URL {
 ```
 
 
+### Canonicalization
+Defined in the[ WHATWG Goals](https://url.spec.whatwg.org/#goals), if a url contains [percent-encoded bytes](https://url.spec.whatwg.org/#percent-encoded-byte) it returns [percent-decode](https://url.spec.whatwg.org/#percent-decode).
+
+
 ## Basic Usage
 Run the application locally using the following:
 
