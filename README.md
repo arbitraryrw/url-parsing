@@ -48,9 +48,23 @@ URL {
 }
 ```
 
-
 ### Canonicalization
 Defined in the[ WHATWG Goals](https://url.spec.whatwg.org/#goals), if a url contains [percent-encoded bytes](https://url.spec.whatwg.org/#percent-encoded-byte) it returns [percent-decode](https://url.spec.whatwg.org/#percent-decode).
+
+An example of this can be seen below:
+
+```
+node app.js
+Server running at http://127.0.0.1:3000/
+
+URL Requested
+Raw url: /?nextUrl=/nikola.dev
+Parsed nextUrl parameter: /nikola.dev
+
+URL Requested
+Raw url: /?nextUrl=%2Fnikola.dev
+Parsed nextUrl parameter: /nikola.dev
+```
 
 
 ## Basic Usage
