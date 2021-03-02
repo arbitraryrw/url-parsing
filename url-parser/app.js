@@ -17,16 +17,19 @@ const server = http.createServer((req, res) => {
 
   var nextUrl = parsedUrl.searchParams.get('nextUrl');
 
-  //1. normalize
+  //1. canonicalization
   //2. sanitize
   //3. validate
 
   // res.write("Demoing URL: " + parser.handleRelativeUrl());
   // res.write("Demoing URL: " + parser.constructUrl());
 
-
   if(nextUrl != null){
-    redirectLocation = baseUrl + "/" + nextUrl;
+    console.log('\nURL Requested')
+    console.log("Raw url: "+req.url)
+    console.log("Parsed nextUrl parameter: " + nextUrl);
+
+    redirectLocation = "/" + nextUrl;
     res = util.setLocationHeader(res, redirectLocation);
   }
 
