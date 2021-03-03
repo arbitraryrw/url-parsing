@@ -86,6 +86,27 @@ Raw url: /?nextUrl=%2Fnikola.dev
 Parsed nextUrl parameter: /nikola.dev
 ```
 
+## Dangerous Characters
+ Modern browsers automatically convert back slashes (`\`) into forward slashes (`/`) despite this being against [RFC3986 - URI Genric Syntax](https://tools.ietf.org/html/rfc3986). In addition, the `@` character can be used to define a target host redirecting the victim to a new domain, this type of attack is defined as [Semantic Attacks](https://tools.ietf.org/html/std66#section-7.6).
+
+ The dangerous characters and encoded versions can be seen below:
+
+```
+127.0.0.1:3000?nextUrl=/nikola.dev
+127.0.0.1:3000?nextUrl=%2Fnikola.dev
+127.0.0.1:3000?nextUrl=\nikola.dev
+127.0.0.1:3000?nextUrl=%5Cnikola.dev
+127.0.0.1:3000?nextUrl=@nikola.dev
+127.0.0.1:3000?nextUrl=%40nikola.dev
+```
+
+Interestingly, the `\` and `/` characters (and URL encoded equivalents) can repeat and are interchangable. The following is a valid payload:
+
+```
+http://127.0.0.1:3000/?nextUrl=/%5C/%5C/\%2F\/\%2F\/\%2F\/nikola.dev
+```
+
+
 ## Basic Usage
 Run the application locally using the following:
 
