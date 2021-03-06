@@ -1,8 +1,11 @@
 # url-parsing
+The purpose of this project is to explore an approach to handling relative URLs safely for redirects and forwards. Many web security vulnerabilities that originate from unvalidated redirects and forwards are often remediated by restricting URLs. This restriction usually takes the form of an allow-list of known good absolute URLs in some capacity. See [OWASP Validating URLs](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html#validating-urls) or [Google Open Redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html#preventing-unvalidated-redirects-and-forwards)
+ for examples of this. Unfortunately, not all applications can adopt an allow-listing approach because the absolute URL may not be known ahead of time. This can cause friction as the one-size-fits all approach does not always work.
 
 ## Introduction
 
 
+## URL Components
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────────────────┐
 │                                            href                                             │
