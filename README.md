@@ -146,10 +146,14 @@ Interestingly, the `\` and `/` characters (and URL encoded equivalents) can repe
 http://127.0.0.1:3000/?nextUrl=/%5C/%5C/\%2F\/\%2F\/\%2F\/nikola.dev
 ```
 
-
 ## Basic Usage
 Run the application locally using the following:
 
 ```
 node app.js
 ```
+
+## References:
+- [Google Open Redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html#preventing-unvalidated-redirects-and-forwards)
+- [OWASP Preventing Unvalidated Redirects and Forwards](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html#preventing-unvalidated-redirects-and-forwards)
+- [OWASP Validating URLs](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html#validating-urls)
