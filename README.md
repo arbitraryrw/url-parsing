@@ -6,11 +6,8 @@ The purpose of this project is to explore an approach to handling relative URLs 
 Objectively, URL parsing is difficult. There are many individual components that comprise a URL, and how each component interacts with one another can be confusing. For example, authority delegation in a URL. [Orange Tsai](https://twitter.com/orange_8361) presented [A New Era of SSRF](https://paper.seebug.org/papers/Security%20Conf/Blackhat/2017_us/us-17-Tsai-A-New-Era-Of-SSRF-Exploiting-URL-Parser-In-Trending-Programming-Languages.pdf) at Black Hat USA 2017 highlighting some of the problems that can arise.
 
 ## Background
-The syntax and semantics of a URI are intentionally broad to create an extensible means for identifying resources. This introduces ambiguity as there are inconsistencies between URL parsers and the [RFC2396](https://tools.ietf.org/html/rfc2396) / [RFC3986](https://tools.ietf.org/html/rfc3986) specifications. [WHATWG](https://nodejs.org/dist/latest-v8.x/docs/api/url.html#url_the_whatwg_url_api) defined a contemporary implementation based on these specifications.This is what will be used in the demo code.
+The syntax and semantics of a URI are intentionally broad to create an extensible means for identifying resources. This introduces ambiguity as there are inconsistencies between URL parsers and the [RFC2396](https://tools.ietf.org/html/rfc2396) / [RFC3986](https://tools.ietf.org/html/rfc3986) specifications. [WHATWG](https://nodejs.org/dist/latest-v8.x/docs/api/url.html#url_the_whatwg_url_api) defined a contemporary implementation based on these specifications forming a standard. The following comporises [URL Strings and URL Objects](https://nodejs.org/dist/latest-v8.x/docs/api/url.html#url_url_strings_and_url_objects).
 
-
-## URL Components
-```
 ┌─────────────────────────────────────────────────────────────────────────────────────────────┐
 │                                            href                                             │
 ├──────────┬──┬─────────────────────┬─────────────────────┬───────────────────────────┬───────┤
@@ -29,7 +26,8 @@ The syntax and semantics of a URI are intentionally broad to create an extensibl
 │                                            href                                             │
 └─────────────────────────────────────────────────────────────────────────────────────────────┘
 ```
-Taken  from [URL Strings and URL Objects](https://nodejs.org/dist/latest-v8.x/docs/api/url.html#url_url_strings_and_url_objects).
+
+At a code level, a URL can be parsed and accessed through a convinient object as seen below: 
 
 ```
 const { URL } = require('url');
@@ -132,12 +130,12 @@ Parsed nextUrl parameter: /nikola.dev
  The dangerous characters and encoded versions can be seen below:
 
 ```
-127.0.0.1:3000?nextUrl=/nikola.dev
-127.0.0.1:3000?nextUrl=%2Fnikola.dev
-127.0.0.1:3000?nextUrl=\nikola.dev
-127.0.0.1:3000?nextUrl=%5Cnikola.dev
-127.0.0.1:3000?nextUrl=@nikola.dev
-127.0.0.1:3000?nextUrl=%40nikola.dev
+127.0.0.1:3000?nextUrl=//nikola.dev
+127.0.0.1:3000?nextUrl=/%2Fnikola.dev
+127.0.0.1:3000?nextUrl=%2F%2Fnikola.dev
+127.0.0.1:3000?nextUrl=\\nikola.dev
+127.0.0.1:3000?nextUrl=\%5Cnikola.dev
+127.0.0.1:3000?nextUrl=%5C%5Cnikola.dev
 ```
 
 Interestingly, the `\` and `/` characters (and URL encoded equivalents) can repeat and are interchangable. The following is a valid payload:
@@ -157,3 +155,4 @@ node app.js
 - [Google Open Redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html#preventing-unvalidated-redirects-and-forwards)
 - [OWASP Preventing Unvalidated Redirects and Forwards](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html#preventing-unvalidated-redirects-and-forwards)
 - [OWASP Validating URLs](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html#validating-urls)
+- [Orange Tsai - A New Era of SSRF](https://paper.seebug.org/papers/Security%20Conf/Blackhat/2017_us/us-17-Tsai-A-New-Era-Of-SSRF-Exploiting-URL-Parser-In-Trending-Programming-Languages.pdf)
