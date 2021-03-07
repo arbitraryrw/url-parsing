@@ -144,6 +144,13 @@ Interestingly, the `\` and `/` characters (and URL encoded equivalents) can repe
 http://127.0.0.1:3000/?nextUrl=/%5C/%5C/\%2F\/\%2F\/\%2F\/nikola.dev
 ```
 
+Attackers can use this to bypass filters also depending on the underlying logic, for example if the `nextUrl` must have `example.com` this can be bypassed:
+
+```
+127.0.0.1:3000?nextUrl=//example.com%40nikola.dev
+127.0.0.1:3000?nextUrl=//example.com@nikola.dev
+```
+
 ## Basic Usage
 Run the application locally using the following:
 
