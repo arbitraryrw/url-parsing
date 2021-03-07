@@ -13,18 +13,21 @@ const server = http.createServer((req, res) => {
   res.setHeader('Content-Type', 'text/plain');
 
   var url = baseUrl + req.url;
-  var parsedUrl = new URL(url);
 
+  //1. canonicalization - normalise the URL
+  //2. sanitization - extract only what is required
+  var parsedUrl = new URL(url);
   var nextUrl = parsedUrl.searchParams.get('nextUrl');
 
-  //1. canonicalization
-  //2. sanitize
-  //3. validate
-
-  // res.write("Demoing URL: " + parser.handleRelativeUrl());
-  // res.write("Demoing URL: " + parser.constructUrl());
-
   if(nextUrl != null){
+    //3. validation - very the URL matches an expected format
+    if (!parser.isUrlValid(nextUrl)){
+      console.log("Failed validation\n");
+      res.write("Failed validation");
+      res.end();
+      return
+    }
+  
     console.log('\nURL Requested')
     console.log("Raw url: "+req.url)
     console.log("Parsed nextUrl parameter: " + nextUrl);
