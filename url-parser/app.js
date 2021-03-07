@@ -32,8 +32,7 @@ const server = http.createServer((req, res) => {
     console.log("Raw url: "+req.url)
     console.log("Parsed nextUrl parameter: " + nextUrl);
 
-    redirectLocation = "/" + nextUrl;
-    res = util.setLocationHeader(res, redirectLocation);
+    res = util.setLocationHeader(res, nextUrl);
   }
 
   res.write("Done!");
