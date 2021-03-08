@@ -8,6 +8,7 @@ Objectively, URL parsing is difficult. There are many individual components that
 ## Background
 The syntax and semantics of a URI are intentionally broad to create an extensible means for identifying resources. This introduces ambiguity as there are inconsistencies between URL parsers and the [RFC2396](https://tools.ietf.org/html/rfc2396) / [RFC3986](https://tools.ietf.org/html/rfc3986) specifications. [WHATWG](https://nodejs.org/dist/latest-v8.x/docs/api/url.html#url_the_whatwg_url_api) defined a contemporary implementation based on these specifications forming a standard. The following comporises [URL Strings and URL Objects](https://nodejs.org/dist/latest-v8.x/docs/api/url.html#url_url_strings_and_url_objects).
 
+```
 ┌─────────────────────────────────────────────────────────────────────────────────────────────┐
 │                                            href                                             │
 ├──────────┬──┬─────────────────────┬─────────────────────┬───────────────────────────┬───────┤
@@ -157,6 +158,10 @@ Run the application locally using the following:
 ```
 node app.js
 ```
+
+## Use Cases to Demonstrate
+1. Simple redirect
+2. Redirect to parameters for example `?params=blah`
 
 ## References:
 - [Google Open Redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html#preventing-unvalidated-redirects-and-forwards)
