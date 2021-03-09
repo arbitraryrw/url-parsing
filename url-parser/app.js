@@ -32,7 +32,16 @@ const server = http.createServer((req, res) => {
     console.log("Raw url: "+req.url)
     console.log("Parsed nextUrl parameter: " + nextUrl);
 
-    res = util.setLocationHeader(res, nextUrl);
+
+    var params = parsedUrl.searchParams.get('params');
+
+    if (params != null && parser.isParamValid(params)){
+      console.log("params" + params);
+      res = util.setLocationHeader(res, nextUrl + "?params=" + params);
+    }
+    else{
+      res = util.setLocationHeader(res, nextUrl);
+    }    
   }
 
   res.write("Done!");
