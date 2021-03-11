@@ -6,7 +6,9 @@ The purpose of this project is to explore an approach to handling relative URLs 
 Objectively, URL parsing is difficult. There are many individual components that comprise a URL, and how each component interacts with one another can be confusing. For example, authority delegation in a URL. [Orange Tsai](https://twitter.com/orange_8361) presented [A New Era of SSRF](https://paper.seebug.org/papers/Security%20Conf/Blackhat/2017_us/us-17-Tsai-A-New-Era-Of-SSRF-Exploiting-URL-Parser-In-Trending-Programming-Languages.pdf) at Black Hat USA 2017 highlighting some of the problems that can arise.
 
 ## TLDR: Recommended Approach
-Where possible handle absolute URLs to avoid introducing unnecessary complexity, [OWASP Validating URLs](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html#validating-urls) is a great resource on such solutions. Any relative URL parsing should leverage established URL parsing libraries such as the [URL Node package](https://nodejs.org/dist/latest-v8.x/docs/api/url.html#url_the_whatwg_url_api) that follows the [WHATWG URL standard](https://url.spec.whatwg.org/). Any untrusted user input should be normalized, santised, and then validated.
+Much like any untrusted user input, relative URLs should be normalized, sanitised, and then validated - in that order. Normalisation and sanitation should be done through established URL parsing libraries such as [URL Node package](https://nodejs.org/dist/latest-v8.x/docs/api/url.html#url_the_whatwg_url_api) that follow the [WHATWG standard](https://url.spec.whatwg.org/). The output of these operations should then be validated using a strict pattern, only allowing required characters. Dangerous characters such as `@`, `#` and multiple `/` characters should not be on the allow list.
+
+Where possible handle absolute URLs to avoid introducing unnecessary complexity, [OWASP Validating URLs](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html#validating-urls) is a great resource on such solutions. 
 
 
 ## Background
