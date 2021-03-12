@@ -10,3 +10,8 @@ exports.isUrlValid = function (relUrl) {
       return false
     }
   };
+
+  exports.isParamValid = function (param) {
+    var re = new RegExp("^([a-zA-Z0-9]+){0,}$");
+    return Boolean(re.test(param));
+  };
